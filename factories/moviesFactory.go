@@ -12,9 +12,9 @@ func MoviesFactory(title string, directorName string, directorLastName string) m
 
 }
 
-func BulkMovieFactory(qty int) {
-	for i := 1; i <= qty; i++ {
-		MoviesFactory("Matrix", "Sam", "Morfeo")
-	}
-	return
-}
+// func BulkMovieFactory(qty int) {
+// 	for i := 1; i <= qty; i++ {
+// 		MoviesFactory("Matrix", "Sam", "Morfeo")
+// 	}
+// 	return
+// }

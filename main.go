@@ -6,23 +6,22 @@ import (
 	"log"
 	"net/http"
 	"restAPI/CRUD/factories"
-	"restAPI/CRUD/models"
+	"restAPI/CRUD/repository"
 
 	"github.com/gorilla/mux"
 )
 
-var movies []models.Movie
 var port string = ":8000"
 
 func getAllMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
-	json.NewEncoder(w).Encode(movies)
+	json.NewEncoder(w).Encode(repository.Movies)
 }
 
 func main() {
 	r := mux.NewRouter()
-	movies = append(movies, factories.MoviesFactory("Matrix", "Sam", "Morfeo"))
-	movies = append(movies, factories.MoviesFactory("Africa mia", "Joe", "Doe"))
+	repository.Movies = append(repository.Movies, factories.MoviesFactory("Matrix", "Sam", "Morfeo"))
+	repository.Movies = append(repository.Movies, factories.MoviesFactory("Africa mia", "Joe", "Doe"))
 
 	r.HandleFunc("/movies", getAllMovies).Methods("GET")
 
