@@ -1,8 +1,6 @@
 package db
 
 import (
-	"restAPI/CRUD/models"
-
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -10,7 +8,7 @@ import (
 var db *gorm.DB
 var err error
 
-func database() {
+func Database() {
 	db, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
@@ -18,6 +16,6 @@ func database() {
 	return
 }
 
-func MigrateSchema() {
-	db.AutoMigrate(&models.Movie{})
-}
+// func MigrateSchema() {
+// 	db.AutoMigrate(&models.Movie{})
+// }
