@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"restAPI/CRUD/routes"
+	"restAPI/CRUD/pkg/routes"
 )
 
 var port string = ":8000"

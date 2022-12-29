@@ -1,5 +1,5 @@
 package repository
 
-import "restAPI/CRUD/models"
+import "restAPI/CRUD/pkg/models"
 
 var Movies []models.Movie

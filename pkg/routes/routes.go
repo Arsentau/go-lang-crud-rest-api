@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"restAPI/CRUD/controllers"
+	"restAPI/CRUD/pkg/controllers"
 
 	"github.com/gorilla/mux"
 )
