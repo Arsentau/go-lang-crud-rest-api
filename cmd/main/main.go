@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"restAPI/CRUD/db"
 	"restAPI/CRUD/pkg/routes"
 	"restAPI/CRUD/pkg/types"
 
@@ -20,6 +21,7 @@ func main() {
 		log.Fatalf("unable to decode into struct, %v", err)
 	}
 	port := ":" + config.Port
+	db.Database(config.DbHost, config.DbName, config.DbUser, config.DbPassword, config.DbPort)
 
 	r := routes.NewRouter()
 	fmt.Printf("Starting server at port %s", port)
