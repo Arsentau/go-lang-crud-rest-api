@@ -5,18 +5,22 @@ import (
 	"log"
 	"net/http"
 	"restAPI/CRUD/pkg/routes"
+	"restAPI/CRUD/pkg/types"
+
+	"github.com/spf13/viper"
 )
 
-var port string = ":8000"
-
-// func getAllMovies(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-type", "application/json")
-// 	json.NewEncoder(w).Encode(repository.Movies)
-// }
-
 func main() {
-	// repository.Movies = append(repository.Movies, factories.MoviesFactory("Matrix", "Sam", "Morfeo"))
-	// repository.Movies = append(repository.Movies, factories.MoviesFactory("Africa mia", "Joe", "Doe"))
+	// Get .env values with Viper
+	viper.SetConfigFile(".env")
+	viper.ReadInConfig()
+	var config types.Config
+	err := viper.Unmarshal(&config)
+	if err != nil {
+		log.Fatalf("unable to decode into struct, %v", err)
+	}
+	port := ":" + config.Port
+
 	r := routes.NewRouter()
 	fmt.Printf("Starting server at port %s", port)
 	log.Fatal(http.ListenAndServe(port, r))
