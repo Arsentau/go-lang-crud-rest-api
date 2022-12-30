@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"restAPI/CRUD/db"
+	"restAPI/CRUD/pkg/models"
 	"restAPI/CRUD/pkg/routes"
 	"restAPI/CRUD/pkg/types"
 
@@ -20,10 +21,15 @@ func main() {
 	if err != nil {
 		log.Fatalf("unable to decode into struct, %v", err)
 	}
-	port := ":" + config.Port
+
+	// Connect to DB
 	db.Database(config.DbHost, config.DbName, config.DbUser, config.DbPassword, config.DbPort)
 
+	// Make migrations of movies
+	db.DB.AutoMigrate(models.Movie{})
+
 	r := routes.NewRouter()
+	port := ":" + config.Port
 	fmt.Printf("Starting server at port %s", port)
 	log.Fatal(http.ListenAndServe(port, r))
 }
