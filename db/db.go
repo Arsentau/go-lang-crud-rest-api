@@ -9,9 +9,9 @@ import (
 )
 
 var DB *gorm.DB
-var err error
 
 func Database(host string, dbname string, user string, password string, port string) {
+	var err error
 
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
@@ -21,7 +21,3 @@ func Database(host string, dbname string, user string, password string, port str
 		log.Println("DB Connected!")
 	}
 }
-
-// func MigrateSchema() {
-// 	db.AutoMigrate(&models.Movie{})
-// }

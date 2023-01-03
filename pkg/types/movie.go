@@ -1,8 +1,8 @@
 package types
 
 type Movie struct {
-	Id          string `json:"id,omitempty"`
+	ID          string `json:"_id"`
 	Title       string `json:"title"`
-	Bought      bool   `json:"director"`
+	Bought      bool   `json:"bought"`
 	Description string `json:"description"`
 }

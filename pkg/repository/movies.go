@@ -1,8 +1,11 @@
 package repository
 
-import "restAPI/CRUD/pkg/models"
+import (
+	"restAPI/CRUD/db"
+	"restAPI/CRUD/pkg/models"
+)
 
-var Movies []models.Movie
-
-// repository.Movies = append(repository.Movies, factories.MoviesFactory("Matrix", "Sam", "Morfeo"))
-// repository.Movies = append(repository.Movies, factories.MoviesFactory("Africa mia", "Joe", "Doe"))
+func CreateMovieRepository(newMovie *models.Movie) error {
+	NewMovie := db.DB.Save(newMovie)
+	return NewMovie.Error
+}
