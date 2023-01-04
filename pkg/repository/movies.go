@@ -15,3 +15,9 @@ func GetAllMoviesRepository() ([]models.Movie, error) {
 	result := db.DB.Find(&movies)
 	return movies, result.Error
 }
+
+func GetMovieRepository(id string) (*models.Movie, error) {
+	var movie models.Movie
+	result := db.DB.First(&movie, "id = ?", id)
+	return &movie, result.Error
+}

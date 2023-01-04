@@ -7,9 +7,11 @@ import (
 	"restAPI/CRUD/pkg/services"
 	"restAPI/CRUD/pkg/types"
 	utils "restAPI/CRUD/pkg/utils/errors"
+
+	"github.com/gorilla/mux"
 )
 
-func GetAllMoviesHandler(w http.ResponseWriter, _ *http.Request) {
+func GetAllMoviesHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	allMovies, err := repository.GetAllMoviesRepository()
 	if err != nil {
@@ -17,6 +19,18 @@ func GetAllMoviesHandler(w http.ResponseWriter, _ *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(&allMovies)
+}
+
+func GetMovie(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	w.Header().Set("Content-type", "application/json")
+	movie, err := repository.GetMovieRepository(params["id"])
+	if err != nil {
+		utils.ErrorResponseHandler(w, err)
+		return
+	}
+	json.NewEncoder(w).Encode(&movie)
+
 }
 
 func CreateMovieHandler(w http.ResponseWriter, r *http.Request) {
