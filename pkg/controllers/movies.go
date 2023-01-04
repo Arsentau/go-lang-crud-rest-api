@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"restAPI/CRUD/pkg/repository"
 	"restAPI/CRUD/pkg/services"
@@ -34,6 +35,8 @@ func GetMovie(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateMovieHandler(w http.ResponseWriter, r *http.Request) {
+	key := r.FormValue("bought")
+	fmt.Print("BOUGHT", key)
 	w.Header().Set("Content-Type", "application/json")
 	var newMovie types.Movie
 	json.NewDecoder(r.Body).Decode(&newMovie)
