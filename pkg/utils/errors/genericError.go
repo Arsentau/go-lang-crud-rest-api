@@ -6,10 +6,13 @@ import (
 	"restAPI/CRUD/pkg/types"
 )
 
-func ErrorResponseHandler(w http.ResponseWriter, err error) http.ResponseWriter {
+func ErrorResponseHandler(w http.ResponseWriter, err error, code int) http.ResponseWriter {
 	w.Header().Add("Content-Type", "application/json")
-	w.WriteHeader(http.StatusInternalServerError)
-	message := types.ErrorHttpResponse{Message: err.Error()}
+	w.WriteHeader(code)
+	message := types.ErrorHttpResponse{
+		Code:    code,
+		Message: err.Error(),
+	}
 	json.NewEncoder(w).Encode(message)
 	return w
 }

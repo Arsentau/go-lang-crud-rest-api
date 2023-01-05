@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"restAPI/CRUD/pkg/repository"
 	"restAPI/CRUD/pkg/services"
@@ -13,10 +12,12 @@ import (
 )
 
 func GetAllMoviesHandler(w http.ResponseWriter, r *http.Request) {
+	bought := r.FormValue("bought")
 	w.Header().Set("Content-type", "application/json")
-	allMovies, err := repository.GetAllMoviesRepository()
+
+	allMovies, err, code := repository.GetAllMoviesRepository(bought)
 	if err != nil {
-		utils.ErrorResponseHandler(w, err)
+		utils.ErrorResponseHandler(w, err, code)
 		return
 	}
 	json.NewEncoder(w).Encode(&allMovies)
@@ -27,7 +28,7 @@ func GetMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	movie, err := repository.GetMovieRepository(params["id"])
 	if err != nil {
-		utils.ErrorResponseHandler(w, err)
+		utils.ErrorResponseHandler(w, err, 404)
 		return
 	}
 	json.NewEncoder(w).Encode(&movie)
@@ -35,14 +36,12 @@ func GetMovie(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateMovieHandler(w http.ResponseWriter, r *http.Request) {
-	key := r.FormValue("bought")
-	fmt.Print("BOUGHT", key)
 	w.Header().Set("Content-Type", "application/json")
 	var newMovie types.Movie
 	json.NewDecoder(r.Body).Decode(&newMovie)
-	savedMovie, err := services.CreateMovieService(newMovie)
+	savedMovie, err, code := services.CreateMovieService(newMovie)
 	if err != nil {
-		utils.ErrorResponseHandler(w, err)
+		utils.ErrorResponseHandler(w, err, code)
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
