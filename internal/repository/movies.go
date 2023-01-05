@@ -36,3 +36,12 @@ func GetMovieRepository(id string) (*types.Movie, error) {
 	result := db.DB.First(&movie, "id = ?", id)
 	return &movie, result.Error
 }
+
+func Delete(id string) (error, int) {
+	var code int = 204
+	result := db.DB.Delete(&models.Movie{}, "id = ?", id)
+	if result.Error != nil {
+		code = 400
+	}
+	return result.Error, code
+}

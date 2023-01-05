@@ -7,8 +7,3 @@ type Movie struct {
 	Bought      bool   `gorm:"default:false"`
 	Description string
 }
-
-// type Director struct {
-// 	FirstName string `json:"firstName"`
-// 	LastName  string `json:"lastName"`
-// }
