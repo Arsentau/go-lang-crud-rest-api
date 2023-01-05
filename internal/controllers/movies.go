@@ -3,10 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"net/http"
-	"restAPI/CRUD/pkg/repository"
-	"restAPI/CRUD/pkg/services"
-	"restAPI/CRUD/pkg/types"
-	utils "restAPI/CRUD/pkg/utils/errors"
+	"restAPI/CRUD/internal/repository"
+	"restAPI/CRUD/internal/services"
+	"restAPI/CRUD/internal/types"
+	utils "restAPI/CRUD/internal/utils/errors"
 
 	"github.com/gorilla/mux"
 )

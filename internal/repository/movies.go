@@ -3,8 +3,8 @@ package repository
 import (
 	"errors"
 	"restAPI/CRUD/db"
-	"restAPI/CRUD/pkg/models"
-	"restAPI/CRUD/pkg/types"
+	"restAPI/CRUD/internal/models"
+	"restAPI/CRUD/internal/types"
 
 	"gorm.io/gorm"
 )

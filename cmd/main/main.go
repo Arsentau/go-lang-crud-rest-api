@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 	"restAPI/CRUD/db"
-	"restAPI/CRUD/pkg/models"
-	"restAPI/CRUD/pkg/routes"
-	"restAPI/CRUD/pkg/types"
+	"restAPI/CRUD/internal/models"
+	"restAPI/CRUD/internal/routes"
+	"restAPI/CRUD/internal/types"
 
 	"github.com/spf13/viper"
 )

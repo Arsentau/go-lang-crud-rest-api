@@ -2,9 +2,9 @@ package services
 
 import (
 	"errors"
-	"restAPI/CRUD/pkg/models"
-	"restAPI/CRUD/pkg/repository"
-	"restAPI/CRUD/pkg/types"
+	"restAPI/CRUD/internal/models"
+	"restAPI/CRUD/internal/repository"
+	"restAPI/CRUD/internal/types"
 
 	"github.com/google/uuid"
 )

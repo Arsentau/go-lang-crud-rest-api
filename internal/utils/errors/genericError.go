@@ -3,7 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"net/http"
-	"restAPI/CRUD/pkg/types"
+	"restAPI/CRUD/internal/types"
 )
 
 func ErrorResponseHandler(w http.ResponseWriter, err error, code int) http.ResponseWriter {
